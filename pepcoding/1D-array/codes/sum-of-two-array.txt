@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+    Scanner s=new Scanner(System.in);
+    int n=s.nextInt();
+    int[] a=new int[n];
+    for(int i=0;i<n;i++){
+        a[i]=s.nextInt();
+    }
+    int m=s.nextInt();
+    int[] b=new int[m];
+    for(int i=0;i<m;i++){
+        b[i]=s.nextInt();
+    }
+    sum(a,b);
+ }
+ static void sum(int []a,int []b){
+     int size= a.length;
+     if(b.length>size){
+         size=b.length;
+     }
+     int[] ans= new int[size+1];
+     int i=a.length-1;
+     int j=b.length-1;
+     int k=ans.length-1;
+     int carry=0;
+     while(k != -1){
+         int sum = carry ;
+         if(i >=0){
+             sum +=a[i];
+         }
+         if(j >= 0){
+             sum +=b[j];
+         }
+         carry=0;
+         if(sum > 9){
+             carry = sum/10;
+             sum %=10;
+         }
+         ans[k]=sum;
+         
+         i--;
+         j--;
+         k--;
+     }
+    if(ans[0]!=0){
+        System.out.println(ans[0]);
+    } 
+     for(int x=1;x<ans.length;x++){
+        System.out.println(ans[x]);
+     }
+ }
+}
