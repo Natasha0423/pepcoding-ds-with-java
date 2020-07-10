@@ -1,0 +1,46 @@
+import java.util.*;
+      
+      public class Main{
+      
+      public static void main(String[] args) {
+          Scanner scn = new Scanner(System.in);
+          int n=scn.nextInt();
+          int space=n/2;
+          int var=1,k=1,temp=1;
+          for(int i=1;i<=n;i++){
+            for(int j =1;j<=space;j++){
+                System.out.print("\t");
+            }  
+            /*if(i>n/2+1){
+                k=n-i+1;
+            }else{
+            k=i;
+            }*/
+            k=temp;
+            for(int j =1;j<=(var/2)+1;j++){
+                System.out.print(k+"\t");
+                k++;
+            } 
+            k--;
+            for(int j =1;j<=(var/2);j++){
+                k--;
+                System.out.print(k+"\t");
+        
+            } 
+            
+            if(i<=n/2){
+                space--;
+                var+=2;
+                temp++;
+                
+            }else{
+                space++;
+                var-=2;
+                temp--;
+            }
+            System.out.println();
+          }
+           
+      
+       }
+      }
