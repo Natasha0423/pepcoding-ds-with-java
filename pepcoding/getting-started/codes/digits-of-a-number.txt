@@ -1,0 +1,22 @@
+import java.util.*;
+    
+    public class Main{
+    
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int n= s.nextInt();
+        int temp = n;
+        int count = 0;
+        while(temp!=0){
+          count++;
+          temp/=10;
+        }
+        int p=(int)Math.pow(10,count-1);
+        while(p!=0){
+            int q=n/p;
+            System.out.println(q);
+            n%=p;
+            p/=10;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+import java.util.*;
+    
+    public class Main{
+    
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int a=s.nextInt(),b=s.nextInt();
+        int d=a,div=b;
+        while(d%div != 0){
+            int r = d%div;
+            d=div;
+            div=r;
+        }
+        int gcd=div;
+        int lcm=(a*b)/gcd;
+        System.out.println(gcd);
+        System.out.println(lcm);
+     }
+    }

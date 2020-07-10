@@ -1,0 +1,23 @@
+import java.util.*;
+   
+   public class Main{
+   
+   public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n= sc.nextInt();
+        int k=sc.nextInt();
+        int temp=n,count=0;
+        while(temp != 0){
+            count++;
+            temp/= 10;
+        }
+        k%=count;
+        if(k<0){
+            k += count;
+        }
+        int r=n%(int)Math.pow(10,k);
+        int q=n/(int)Math.pow(10,k);
+        int ans = r*(int)Math.pow(10,count-k)+q;
+        System.out.println(ans);
+    }
+   }
