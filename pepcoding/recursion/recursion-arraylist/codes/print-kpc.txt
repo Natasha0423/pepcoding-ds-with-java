@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+     public static void main(String[] args) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        kpc(str,"");
+        
+    }
+	static String[] button={".;","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
+
+    public static void kpc(String str, String asf){
+		if(str.length()==0){
+			System.out.println(asf);
+			return;
+		}
+		char ch=str.charAt(0);
+		int idx=ch-'0';
+		String key=button[idx];
+		for(int i=0;i<key.length();i++){
+			kpc(str.substring(1),asf+key.charAt(i));
+		}
+    }
+
+}

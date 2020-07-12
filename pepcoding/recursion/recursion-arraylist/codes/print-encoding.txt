@@ -1,0 +1,46 @@
+import java.util.*;
+public class Main {
+     public static void main(String[] args) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        String r=sc.next();
+        encoding(r,"");
+        System.out.println();
+    }
+    public static void encoding(String str,String asf){
+		 if(str.length()==0){
+		     if(asf.length()==0){
+		         return;
+		     }
+	        System.out.println(asf);
+	        return;
+	    }
+	    if(str.length()==1){
+	        if(str.charAt(0)=='0'){
+	            return;
+	        }
+	        char ch=str.charAt(0);
+	        int n=ch-'0';
+	        char alpha=(char)('a'+n-1);
+	        encoding(str.substring(1),asf+alpha);
+	    }else{
+	         if(str.charAt(0)=='0'){
+	            return;
+	        }
+	        
+	         char ch=str.charAt(0);
+	        int n=ch-'0';
+	        char alpha=(char)('a'+n-1);
+	        encoding(str.substring(1),asf+alpha);
+	        
+	        char ch2=str.charAt(1);
+	        int n2=ch2-'0';
+	        int num=n*10+n2;
+	        char alpha2=(char)('a'+num-1);
+	        if(num<=26){
+	             encoding(str.substring(2),asf+alpha2);
+	        }
+	    }
+		
+    }
+
+}

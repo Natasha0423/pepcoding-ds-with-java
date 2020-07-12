@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+
+     public static void main(String[] args) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        String r=sc.next();
+		
+        permu(r,"");
+        
+    }
+	
+    public static void permu(String str,String psf){
+		if(str.length()==0){
+			System.out.println(psf);
+			return;
+		}
+		//char ch=str.charAt(0);
+	    //String ros=str.substring(1);
+		for(int i=0;i<str.length();i++){
+		String ros=(str.substring(0,i)+str.substring(i+1));
+		permu(ros,psf+str.charAt(i));
+		}
+		
+    }
+
+}

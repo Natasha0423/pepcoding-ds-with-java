@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+     public static void main(String[] args) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        stairpath(n,"");
+        
+    }
+	
+    public static void stairpath(int n, String psf){
+		if(n<0){
+			return;
+		}
+		if(n==0){
+			System.out.println(psf);
+			return;
+		}
+		stairpath(n-1,psf+"1");
+		stairpath(n-2,psf+"2");
+		stairpath(n-3,psf+"3");
+    }
+
+}

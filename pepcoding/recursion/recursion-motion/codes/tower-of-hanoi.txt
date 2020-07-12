@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+       Scanner sc=new Scanner(System.in);
+       int n=sc.nextInt();
+       int sr=sc.nextInt(); //source => 10
+       int dt=sc.nextInt(); //destination =>11
+       int hp=sc.nextInt(); //helping =>12
+       toh(n,sr,hp,dt);
+    }
+
+    public static void toh(int n, int sr, int hp, int dt){
+        
+        if(n==0)
+        {
+            return;
+        }
+        toh(n-1,sr,dt,hp);
+        System.out.println(n+"["+sr+" -> "+dt+"]");
+        toh(n-1,hp,sr,dt);
+        
+    }
+
+}

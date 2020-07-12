@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+		int c=sc.nextInt();
+        System.out.print(getMazePaths(1,1,r,c));
+    }
+
+    public static ArrayList<String> getMazePaths(int sr, int sc, int dr, int dc) {
+        if(sr==dr && sc==dc){
+			ArrayList<String> base=new ArrayList<>();
+			base.add("");
+			return base;
+		}
+		
+		ArrayList<String> ans=new ArrayList<>();
+		if(sc+1<=dc){
+		    ArrayList<String> p=getMazePaths(sr,sc+1,dr,dc);
+		
+		    for(String s:p){
+              ans.add("h" + s);
+            }
+		}
+	    if(sr+1<=dr){
+		    ArrayList<String> p=getMazePaths(sr+1,sc,dr,dc);
+	    
+	        for(String s:p){
+              ans.add("v" + s);
+            }
+	    }
+		return ans;
+		
+    }
+
+}

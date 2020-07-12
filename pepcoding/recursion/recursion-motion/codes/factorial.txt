@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int v=factorial(n);
+        System.out.println(v);
+    }
+
+    public static int factorial(int n){
+       if(n==0 || n==1)
+         return 1;
+        return (n*factorial(n-1)); 
+    }
+
+}
