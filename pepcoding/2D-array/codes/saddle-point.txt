@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+         Scanner sc=new Scanner(System.in);
+       
+        int n=sc.nextInt();
+        int[][] arr=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=sc.nextInt();
+            }
+            
+        }
+        int a[]=new int[n];
+        int k=0;
+        boolean flag=true;;
+        for(int i=0;i<n;i++){
+            a[k]=arr[i][0];
+            for(int j=0;j<n;j++){
+                if(k>arr[i][j]){
+                    a[k]=arr[i][j];
+                }
+               
+            }
+            k++;
+            
+        }
+        int b=a[0],c=0;
+        for(int i=0;i<n;i++){
+           if(b<a[i]){
+               b=a[i];
+               c=i;
+           }
+        }
+        for(int i=0;i<n;i++){
+            if(b>arr[c][i]){
+                flag= false;
+            }
+        }
+        if(flag==false){
+            System.out.println("Invalid input");
+            return;
+        }
+        
+        System.out.println(b);
+    }
+
+}
