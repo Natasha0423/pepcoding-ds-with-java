@@ -1,0 +1,190 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	   // int n=sc.nextInt();
+	    String str=sc.next();
+	    
+	   // subseq(str,"");
+	   //kpc(str,"");
+	   
+	   //stairpath(n,"");
+	   
+	   // int dr=sc.nextInt();
+	   // int dc=sc.nextInt();
+	   ////mazepath(1,1,dr,dc,"");
+	   //mazepathmulti(1,1,dr,dc,"");
+	   
+	   //System.out.println(count);
+	   
+	   //permutation(str,"");
+	   encoding(str,"");
+	   
+	}
+	
+	static void encoding(String str, String asf){
+	    
+	    if(str.length()==0){
+	        System.out.println(asf);
+	        return;
+	    }
+	    
+	    if(str.length()==1){
+	        if(str.charAt(0)=='0'){
+	            return;
+	        }
+	        char ch=str.charAt(0);
+	        int n=ch-'0';
+	        char alpha=(char)('a'+n-1);
+	        
+	        encoding(str.substring(1),asf+alpha);
+	        
+	    }else{
+	        
+	         if(str.charAt(0)=='0'){
+	            return;
+	        }
+	        
+	         char ch=str.charAt(0);
+	        int n=ch-'0';
+	        char alpha=(char)('a'+n-1);
+	        encoding(str.substring(1),asf+alpha);
+	        
+	        char ch2=str.charAt(1);
+	        int n2=ch2-'0';
+	        int num=n*10+n2;
+	        char alpha2=(char)('a'+num-1);
+	        if(num<=26){
+	             encoding(str.substring(2),asf+alpha2);
+	        }
+	        
+	        
+	    }
+	    
+	}
+	
+	
+	static void permutation(String str,String asf){
+	    if(str.length()==0){
+	        System.out.println(asf);
+	        return;
+	    }
+	    for(int i=0;i<str.length();i++){
+	        String ros=str.substring(0,i)+str.substring(i+1);
+	        permutation(ros,asf+str.charAt(i));
+	    }
+	    
+	}
+	
+	static int count=0;
+	static void mazepathmulti(int sr,int sc,int dr,int dc,String psf){
+	    if(sr==dr && sc==dc){
+	        count++;
+	        System.out.println(psf);
+	        return;
+	    }
+	    
+	   // horizontal
+	    for(int i=1;sc+i<=dc;i++){
+	          mazepathmulti(sr,sc+i,dr,dc,psf+"h"+i);
+	        
+	    }
+	   // vertical
+	    for(int i=1;sr+i<=dr;i++){
+	          mazepathmulti(sr+i,sc,dr,dc,psf+"v"+i);
+	    }
+	    
+	   // diagonal
+	    for(int i=1;sc+i<=dc && sr+i<=dr;i++){
+	          mazepathmulti(sr+i,sc+i,dr,dc,psf+"d"+i);
+	        
+	    }
+	    
+	    
+	}
+	
+	static void mazepath(int sr,int sc,int dr,int dc,String psf){
+	   // code here
+	    if(sr==dr && sc==dc){
+	        System.out.println(psf);
+	        return;
+	    }
+	    
+	   if(sc+1<=dc){
+	     mazepath(sr,sc+1,dr,dc,psf+"h");
+	   } 
+	   if(sr+1<=dr){
+	     mazepath(sr+1,sc,dr,dc,psf+"v");
+	   }
+	    
+	}
+	
+	static void stairpath(int n,String psf){
+	   //if(n<0){//re-active method
+	   //    return;
+	   //}
+	   
+	   if(n==0){
+	       System.out.println(psf);
+	       return;
+	   }
+	   //pro active method
+	   if(n-1>=0){
+	     stairpath(n-1,psf+"1");
+	   }
+	   
+	   if(n-2>=0){
+	    stairpath(n-2,psf+"2");
+	   }
+	   
+	   if(n-3>=0){
+	    stairpath(n-3,psf+"3");
+	   }
+	   
+	   //stairpath(n-1,psf+"1");
+	   //stairpath(n-2,psf+"2");
+	   //stairpath(n-3,psf+"3");
+	}
+	
+	static String[] button={".;","abc","de","fgh","ijk","lmno","pqrs","tuv","wx","yz"};
+	
+	static void kpc(String str,String asf){
+	   // code here
+	   if(str.length()==0){
+	       System.out.println(asf);
+	       return;
+	   }
+	   
+	   char ch=str.charAt(0);
+	   int idx=ch-'0';
+	   
+	   String key=button[idx];
+	   
+	   for(int i=0;i<key.length();i++){
+	       
+	       kpc(str.substring(1),asf+key.charAt(i));
+	   }
+	   
+	}
+	
+	static void subseq(String str,String asf){
+	    
+	    if(str.length()==0){
+	        System.out.println(asf);
+	        return;
+	    }
+	    
+	    char ch=str.charAt(0);
+	    String ros=str.substring(1);
+	    subseq(ros,asf);
+	    subseq(ros,asf+ch);
+	}
+}
