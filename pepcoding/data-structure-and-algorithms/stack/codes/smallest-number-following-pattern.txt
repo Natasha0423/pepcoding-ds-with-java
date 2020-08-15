@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    Stack<Integer> st= new Stack<>();
+    int count = 1;
+    String ans="";
+    for(int idx=0;idx<=str.length();idx++){
+        st.push(count);
+        count++;
+        while(st.size() >0 && (idx == str.length() || str.charAt(idx)=='i')){
+            ans=ans+st.pop();
+        }
+    }
+    System.out.println(ans);
+ }
+}

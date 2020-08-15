@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+public class Main{
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+    evalAndSolve(exp);
+ }
+  public static void evalAndSolve(String exp){
+     Stack<Integer> eval = new Stack<>();
+     Stack<String> infix = new Stack<>();
+     Stack<String> postfix = new Stack<>();
+      for(int i=exp.length()-1;i>=0;i--){
+          char ch=exp.charAt(i);
+          if(ch == '-' || ch == '+' || ch == '*' || ch == '/'){
+              int op2= eval.pop();
+              int op1= eval.pop();
+              int val = solve(op1,op2,ch);
+              eval.push(val);
+              
+              String iop2=infix.pop();
+              String iop1=infix.pop();
+              infix.push("("+ iop2 + ch + iop1 +")");
+              String pop2=postfix.pop();
+              String pop1=postfix.pop();
+              postfix.push(pop2 + pop1 +ch);
+          }else{
+            postfix.push(""+ch);
+            infix.push(""+ch);
+            eval.push(ch - '0');
+         }
+        }
+        System.out.println(eval.peek());
+        System.out.println(infix.peek());
+        System.out.println(postfix.peek());
+    }
+    public static int solve(int n1,int n2,char op){
+        if(op == '-'){
+            return n2-n1;
+        }else if(op == '+'){
+            return n2+n1;
+        }else if(op == '*'){
+            return n2*n1;
+        }else
+           return n2/n1;
+    }
+}

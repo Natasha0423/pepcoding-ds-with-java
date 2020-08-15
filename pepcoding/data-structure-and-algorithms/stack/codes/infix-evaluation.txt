@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String exp = br.readLine();
+        int ans = evaluate(exp);
+        System.out.println(ans);
+    }
+    public static int evaluate(String exp) {
+        Stack < Integer > num = new Stack < > ();
+        Stack < Character > optr = new Stack < > ();
+        for (int i = 0; i < exp.length(); i++) {
+            char ch = exp.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                num.push(ch - '0'); //'5' - '0'(ASCII CONVERSION TO INTEGER)
+            } else if (ch == '(') {
+                optr.push(ch);
+            } else if (ch == ')') {
+                while (optr.peek() != '(') {
+                    char op = optr.pop();
+                    int oprnd2 = num.pop();
+                    int oprnd1 = num.pop();
+                    int val = solve(op, oprnd1, oprnd2);
+                    num.push(val);
+                }
+                optr.pop();
+            } else if (ch == '-' || ch == '+' || ch == '*' || ch == '/') {
+                while (optr.size() > 0 && optr.peek() != '(' && preced(optr.peek()) >= preced(ch)) {
+                    char op = optr.pop();
+                    int oprnd2 = num.pop();
+                    int oprnd1 = num.pop();
+                    int val = solve(op, oprnd1, oprnd2);
+                    num.push(val);
+                }
+                optr.push(ch);
+            }
+        }
+        while (optr.size() > 0) {
+            char op = optr.pop();
+            int oprnd2 = num.pop();
+            int oprnd1 = num.pop();
+            int val = solve(op, oprnd1, oprnd2);
+            num.push(val);
+        }
+        return num.peek();
+    }
+    public static int preced(char optr) {
+        if (optr == '-' || optr == '+') {
+            return 1;
+        } else
+            return 2;
+    }
+    public static int solve(char op, int oprnd1, int oprnd2) {
+        if (op == '-') {
+            return oprnd1 - oprnd2;
+        } else if (op == '+') {
+            return oprnd1 + oprnd2;
+        } else if (op == '*') {
+            return oprnd1 * oprnd2;
+        } else {
+            return oprnd1 / oprnd2;
+        }
+    }
+}

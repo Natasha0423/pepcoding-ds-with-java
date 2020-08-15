@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+
+    convert(exp);
+ }
+ public static void convert(String exp){
+     Stack<Character> optrs = new Stack<>();
+     Stack<String> prefix = new Stack<>();
+     Stack<String> postfix = new Stack<>();
+     for(int i=0;i<exp.length();i++){
+         char ch=exp.charAt(i);
+         if((ch >= '0' && ch <= '9') || (ch >= 'a' && ch<='z') || (ch >= 'A' && ch<='Z')){
+            prefix.push(""+ch);
+            postfix.push(""+ch);
+             
+         }else if(ch =='('){
+             optrs.push(ch);
+         }else if(ch == ')'){
+             while(optrs.peek() != '('){
+                 char optr = optrs.pop();
+                 String pre2 = prefix.pop();
+                 String pre1 = prefix.pop();
+                 prefix.push(optr+pre1+pre2);
+                 String post2 = postfix.pop();
+                 String post1 = postfix.pop();
+                 postfix.push(post1+post2+optr);
+             }
+             optrs.pop();
+         }else if(ch== '-' || ch == '+' || ch == '*' || ch=='/'){
+             while(optrs.size()>0 && optrs.peek() !='(' && pred(optrs.peek()) >=pred(ch)){
+                 char optr = optrs.pop();
+                 String pre2 = prefix.pop();
+                 String pre1 = prefix.pop();
+                 prefix.push(optr+pre1+pre2);
+                 String post2 = postfix.pop();
+                 String post1 = postfix.pop();
+                 postfix.push(post1+post2+optr);
+             }
+             optrs.push(ch);
+         }
+     }
+     while(optrs.size() >0){ 
+         char optr = optrs.pop();
+                 String pre2 = prefix.pop();
+                 String pre1 = prefix.pop();
+                 prefix.push(optr+pre1+pre2);
+                 String post2 = postfix.pop();
+                 String post1 = postfix.pop();
+                 postfix.push(post1+post2+optr);}
+     System.out.println(postfix.peek());
+     System.out.println(prefix.peek());
+     
+ }
+ public static int pred(char optr){
+     if(optr == '-' || optr == '+'){
+         return 1;
+         
+     }else{return 2;}
+ }
+ 
+}
